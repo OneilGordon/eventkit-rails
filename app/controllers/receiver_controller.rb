@@ -16,7 +16,6 @@ class ReceiverController < ApplicationController
 
 	def header_check
 		agent = request.headers["User-Agent"]
-		if agent == "SendGrid Event API" or agent == "SendGrid Event API Test"
 			if User.count > 0 then
 				authenticate_or_request_with_http_basic('Authorized users only') do |u, p|
 					valid = false
@@ -38,7 +37,6 @@ class ReceiverController < ApplicationController
 				:message => :error,
 				:error => "Request rejected."
 			}, :status => 403
-		end
 	end
 
 	def handle_post
